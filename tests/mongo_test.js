@@ -31,5 +31,6 @@ var participant = {
 	"paid": true
 }
 
-mongoManager.insertGoal(goal);
-mongoManager.changeGoalAmount(goalName, 20000);
+//mongoManager.insertGoal(goal);
+//mongoManager.changeGoalAmount(goalName, 20000);
+mongoManager.addParticipantToGoal(goalName, participant);
