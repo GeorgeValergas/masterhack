@@ -4,7 +4,8 @@ client = Simplify.getClient({
     publicKey: keys.public,
     privateKey: keys.private
 });
-console.log(client);
+
+console.log(keys);
 client.payment.create({
     amount : "100",
     description : "payment description",
