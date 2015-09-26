@@ -34,6 +34,21 @@ module.exports = {
     })
   },
 
+  removeParticipantFromGoal: function(goalName, participantEmail) {
+     // Use connect method to connect to the Server
+    MongoClient.connect(url, function(err, db) {
+      // Remove a single participant from the participants list
+      db.collection('goals').update({"name": goalName}, { $pull: {"participants": {"email": participantEmail}}}, function(err, results) {
+          // Fetch the document that was modified
+          db.collection('goals').findOne({"name": goalName, "participants.email": participantEmail}, function(err, item) {
+            assert.equal(null, err);
+            assert.equal(null, item);
+            db.close();
+          });
+      });
+    })
+  },
+
   changeGoalAmount: function(goalName, goalAmount) {
     // Use connect method to connect to the Server
     MongoClient.connect(url, function(err, db) {
@@ -47,10 +62,5 @@ module.exports = {
           });
         });
     })
-  },
-
-
-  removeParticipantFromGoal: function(goalObject, participant) {
-  	
   }
 }

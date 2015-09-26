@@ -25,12 +25,14 @@ var goal = {
   ]
 };
 
+var participantEmail = "daniel@concordia.ca"
 var participant = {
-	"email" : "daniel@concordia.ca",
+	"email" : participantEmail,
   	"amount" : 1000,
-	"paid": true
+	"paid": false
 }
 
 //mongoManager.insertGoal(goal);
 //mongoManager.changeGoalAmount(goalName, 20000);
-mongoManager.addParticipantToGoal(goalName, participant);
+//mongoManager.addParticipantToGoal(goalName, participant);
+mongoManager.removeParticipantFromGoal(goalName, participantEmail);
