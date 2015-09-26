@@ -1,14 +1,27 @@
-var dbcredentials = require("../dbcredentials");
+var mongoManager = require("../mongoManager.js");
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+var goal = {
+  "name":"Buying car for Chantale",
+  "goalAmount": 50000,
+  "active": true, //If this is FALSE, the idea is cancelled
+  "complete": false, //If this is TRUE, the payment was captured from everyone. If FALSE, it is still only authorized
+  "participants": [
+    {
+      "email" : "mark@concordia.ca",
+      "amount" : 1000,
+      "paid": true
+    },
+    {
+      "email" : "george@concordia.ca",
+      "amount" : 1000,
+      "paid": false
+    },
+    {
+      "email" : "double@concordia.ca",
+      "amount" : 1000,
+      "paid": false
+    }
+  ]
+};
 
-// Connection URL
-var url = 'mongodb://' + dbcredentials.dbusername + ':' + dbcredentials.dbpassword + '@ds051873.mongolab.com:51873/spiritdb';
-// Use connect method to connect to the Server
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected correctly to server");
-
-  db.close();
-});
+mongoManager.insertGoal(goal);
