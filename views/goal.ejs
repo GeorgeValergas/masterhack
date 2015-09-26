@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>goal <%= title %></title>
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script 
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>goal <%= title %> <br>
+				<button class="btn btn-lg btn-primary">Add user</button>
+				<% if (currentUser.paid) { %>
+					<button disabled class="btn btn-lg btn-success">You paid</button>
+					<br><span class='lead'>Your contribution: <%= currentUser.amount %></span>
+				<% } else { %>
+					<button class="btn btn-lg btn-success">Pay <span class="glyphicon glyphicon-usd"></span></button>
+				<% } %>
+				<span class="pull-right">$100/$200</span>
+			</h1>
+		</div>
+		<div class="progress">
+			<div class="progress-bar progress-bar-primary" role="progressbar"
+				aria-valuenow="1" aria-valuemin="1" aria-valuemax="100" style="width: 50%;">
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<ul class="list-group">
+					<li class="list-group-item">user1 paid <span class="glyphicon glyphicon-ok text-success"></span></li>
+					<li class="list-group-item">user2 paid <span class="glyphicon glyphicon-ok text-success"></span></li>
+					<li class="list-group-item">user3 paid <span class="glyphicon glyphicon-ok text-success"></span></li>
+					<li class="list-group-item">user4 paid <span class="glyphicon glyphicon-ok text-success"></span></li>
+					<li class="list-group-item">user5 paid <span class="glyphicon glyphicon-ok text-success"></span></li>
+					<li class="list-group-item">user6 paid <span class="glyphicon glyphicon-ok text-success"></span></li>
+					<li class="list-group-item">user7 paid <span class="glyphicon glyphicon-ok text-success"></span></li>
+				</ul>
+		</div>
+	</div>
+
+	
+</body>
+</html>
