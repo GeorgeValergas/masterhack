@@ -13,6 +13,7 @@
 //- Update the amount if it is different from the expected minimum
 //- Cancel a Goal (mark active as FALSE)
 //- Mark a Goal as complete once goal is reached (mark complete as TRUE)
+//- Once goal is reached, fire off the MoneySend API requests
 
 //See https://mongodb.github.io/node-mongodb-native/2.0/reference/crud/
 
