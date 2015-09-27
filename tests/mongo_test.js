@@ -1,24 +1,24 @@
 var mongoManager = require("../mongoManager.js");
-var goalName = "Buying car for Chantale";
+var goalName = "Paying for Chalet Damages";
 
 var goal = {
   "name": goalName,
-  "goalAmount": 50000,
+  "goalAmount": 5000,
   "active": true, //If this is FALSE, the idea is cancelled
   "complete": false, //If this is TRUE, the payment was captured from everyone. If FALSE, it is still only authorized
   "participants": [
     {
-      "email" : "mark@concordia.ca",
+      "email" : "patrick@concordia.ca",
       "amount" : 1000,
       "paid": true
     },
     {
-      "email" : "george@concordia.ca",
-      "amount" : 1000,
+      "email" : "felicia@concordia.ca",
+      "amount" : 10,
       "paid": false
     },
     {
-      "email" : "double@concordia.ca",
+      "email" : "int@concordia.ca",
       "amount" : 1000,
       "paid": false
     }
@@ -37,6 +37,11 @@ var participant = {
 //   console.log(goals);
 // });
 
-mongoManager.findGoal("5607231a00140e800ebaf1d9",function(doc) {
-  console.log(doc);
+
+// mongoManager.insertGoal(goal);
+mongoManager.setActive("5607231a00140e800ebaf1d9",false,function(res) {
+  console.log("\tisActive:",res);
 });
+// mongoManager.findGoal("5607231a00140e800ebaf1d9",function(doc) {
+//   console.log(doc);
+// });
