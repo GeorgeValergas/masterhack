@@ -1,6 +1,6 @@
 var express = require('express');
-var router = express.Router();
-
+var router  = express.Router();
+var mm		= require('../mongoManager');
 /* GET my goals page. */
 router.get('/', function(req, res, next) {
   res.render('goals', { title: 'goals' });
@@ -13,9 +13,11 @@ router.get('/:id', function(req, res, next) {
 	var currentUser = {
 		paid: true,
 		email: "float@gmail.com",
-		amount: 100
+		amount: 100,
+		id: req.params.id
 	};
-  res.render('goal', {title: req.params.id,progress:50,currentUser:currentUser});
+	// var userId = req.params.id;
+  res.render('goal', {title: "Buy Chantale a Shoebox ",progress:50,user:currentUser,goal:currentGoal});
 });
 
 module.exports = router;

@@ -7,7 +7,7 @@
       <Line1>123 Main Street</Line1>
       <Line2>#5A</Line2>
       <City>Arlington</City>
-      <CountrySubdivision>VA</CountrySubdivision>
+      <CountrySubdivisioan>VA</CountrySubdivision>
       <PostalCode>22207</PostalCode>
       <Country>USA</Country>
    </SenderAddress>

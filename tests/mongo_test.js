@@ -28,8 +28,11 @@ var goal = {
 var participantEmail = "daniel@concordia.ca"
 var participant = {
 	"email" : participantEmail,
-  	"amount" : 1000,
+  "amount" : 1000,
 	"paid": false
 }
-
-mongoManager.markParticipantAsHavingPaid(goalName, participantEmail);
+var goals;
+mongoManager.findGoals(function(docs){
+  goals = (docs);
+  console.log(goals);
+});

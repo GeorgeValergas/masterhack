@@ -13,14 +13,16 @@
 	<div class="container">
 		<div class="jumbotron">
 			<h1>goal <%= title %> <br>
-				<button class="btn btn-lg btn-primary">Add user</button>
-				<% if (currentUser.paid) { %>
+				<!-- /goals/goalid/pay/userId -->
+				<form action=<%= "/goals/"+ goalId + "/pay/" + user.id %> method='post'>
+					<input value="Add user" type="submit" class="btn btn-lg btn-primary"></input></form>
+				<% if (user.paid) { %>
 					<button disabled class="btn btn-lg btn-success">You paid</button>
-					<br><span class='lead'>Your contribution: <%= currentUser.amount %></span>
+					<br><span class='lead'>Your contribution: <%= user.amount %></span>
 				<% } else { %>
 					<button class="btn btn-lg btn-success">Pay <span class="glyphicon glyphicon-usd"></span></button>
 				<% } %>
-				<span class="pull-right">$100/$200</span>
+				<span class="pull-right">$100/<%= goalamount%></span>
 			</h1>
 		</div>
 		<div class="progress">

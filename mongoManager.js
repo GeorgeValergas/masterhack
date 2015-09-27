@@ -7,6 +7,9 @@ var MongoClient = require('mongodb').MongoClient
 var url = 'mongodb://' + dbcredentials.dbusername + ':' + dbcredentials.dbpassword + '@ds051873.mongolab.com:51873/spiritdb';
 
 module.exports = {
+  //////////////////
+  // ADMIN STUFF //////
+  /////////////////
   insertGoal: function(goalObject) {
   	// Use connect method to connect to the Server
   	MongoClient.connect(url, function(err, db) {
@@ -77,5 +80,16 @@ module.exports = {
           });
         });
     })
+  },
+
+  findGoals: function(callback) {
+    MongoClient.connect(url, function(err, db) {
+      db.collection('goals').find().toArray(function (err, docs){
+          if (docs != null) {
+            db.close();
+            callback(docs);
+          }
+      });
+    });
   }
 }
