@@ -94,7 +94,7 @@ module.exports = {
     });
   },
 
-  findGoal: function(id,callback) {
+  findGoal: function(id, callback) {
     MongoClient.connect(url, function(err, db) {
       db.collection('goals').findOne({"_id": ObjectID(id)},function (err, doc){
         db.close();
@@ -103,7 +103,7 @@ module.exports = {
     });
   },
 
-  setActive: function(id,isActive,callback) {
+  setActive: function(id, isActive, callback) {
     // Use connect method to connect to the Server
     MongoClient.connect(url, function(err, db) {
       // Change the value of the active flag
@@ -116,5 +116,20 @@ module.exports = {
         });
       });
     });
-  }             
+  },
+
+   setComplete: function(id, isComplete, callback) {
+    // Use connect method to connect to the Server
+    MongoClient.connect(url, function(err, db) {
+      // Change the value of the active flag
+      db.collection('goals').update({"_id": ObjectID(id)}, { $set: {"complete": isComplete}}, function(err, r) {
+        db.collection('goals').findOne({"_id": ObjectID(id)}, function(err, item) {
+          assert.equal(null, err);
+          assert.equal(isComplete, item.complete);
+          db.close();
+          callback(item.complete);
+        });
+      });
+    });
+  }                
 }
