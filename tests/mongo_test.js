@@ -39,12 +39,13 @@ var participant = {
 
 
 // mongoManager.insertGoal(goal);
-mongoManager.setActive("5607231a00140e800ebaf1d9", true, function(res) {
-  console.log("\tactive:",res);
-});
-mongoManager.setComplete("5607231a00140e800ebaf1d9", false, function(res) {
-  console.log("\tcomplete:",res);
-});
+// mongoManager.setActive("5607231a00140e800ebaf1d9", true, function(res) {
+//   console.log("\tactive:",res);
+// });
+// mongoManager.setComplete("5607231a00140e800ebaf1d9", false, function(res) {
+//   console.log("\tcomplete:",res);
+// });
 // mongoManager.findGoal("5607231a00140e800ebaf1d9",function(doc) {
 //   console.log(doc);
 // });
+mongoManager.changeGoalName("5607231a00140e800ebaf1d9", "Buying red car for Chantale");

@@ -68,6 +68,21 @@ module.exports = {
     })
   },
 
+  changeGoalName: function(id, goalName) {
+      // Use connect method to connect to the Server
+      MongoClient.connect(url, function(err, db) {
+        // Change the value of the goal amount
+        db.collection('goals').update({"_id": ObjectID(id)}, { $set: {"name": goalName}}, function(err, results) {
+          // Fetch the document that was modified
+          db.collection('goals').findOne({"_id": ObjectID(id)}, function(err, item) {
+            assert.equal(null, err);
+            assert.equal(goalName, item.name);
+            db.close();
+          });
+        });
+      });
+    },
+
   changeGoalAmount: function(id, goalAmount) {
     // Use connect method to connect to the Server
     MongoClient.connect(url, function(err, db) {
