@@ -1,7 +1,8 @@
-var dbcredentials = require("./dbcredentials");
-
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+var dbcredentials = require("./dbcredentials"),
+  mongo = require('mongodb'),
+  ObjectID = mongo.ObjectID,
+  MongoClient = mongo.MongoClient,
+  assert = require('assert');
 
 // Connection URL
 var url = 'mongodb://' + dbcredentials.dbusername + ':' + dbcredentials.dbpassword + '@ds051873.mongolab.com:51873/spiritdb';
@@ -89,6 +90,15 @@ module.exports = {
           db.close();
           callback(docs);
         }
+      });
+    });
+  },
+
+  findGoal: function(id,callback) {
+    MongoClient.connect(url, function(err, db) {
+      db.collection('goals').findOne({"_id": ObjectID(id)},function (err, doc){
+        db.close();
+        callback(doc);
       });
     });
   }

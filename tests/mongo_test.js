@@ -31,8 +31,12 @@ var participant = {
   "amount" : 1000,
 	"paid": false
 }
-var goals;
-mongoManager.findGoals(function(docs){
-  goals = (docs);
-  console.log(goals);
+// var goals;
+// mongoManager.findGoals(function(docs){
+//   goals = (docs);
+//   console.log(goals);
+// });
+
+mongoManager.findGoal("5607231a00140e800ebaf1d9",function(doc) {
+  console.log(doc);
 });
