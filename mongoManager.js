@@ -27,13 +27,13 @@ module.exports = {
     MongoClient.connect(url, function(err, db) {
       // Insert a single participant to the participants list
       db.collection('goals').update({"name": goalName}, { $push: {"participants": participantObject}}, function(err, results) {
-          // Fetch the document that was modified
-          db.collection('goals').findOne({"name": goalName, "participants.email": participantObject.email}, function(err, item) {
-            assert.equal(null, err);
-            assert.notEqual(null, item);
-            db.close();
-          });
+        // Fetch the document that was modified
+        db.collection('goals').findOne({"name": goalName, "participants.email": participantObject.email}, function(err, item) {
+          assert.equal(null, err);
+          assert.notEqual(null, item);
+          db.close();
         });
+      });
     })
   },
 
@@ -42,12 +42,12 @@ module.exports = {
     MongoClient.connect(url, function(err, db) {
       // Remove a single participant from the participants list
       db.collection('goals').update({"name": goalName}, { $pull: {"participants": {"email": participantEmail}}}, function(err, results) {
-          // Fetch the document that was modified
-          db.collection('goals').findOne({"name": goalName, "participants.email": participantEmail}, function(err, item) {
-            assert.equal(null, err);
-            assert.equal(null, item);
-            db.close();
-          });
+        // Fetch the document that was modified
+        db.collection('goals').findOne({"name": goalName, "participants.email": participantEmail}, function(err, item) {
+          assert.equal(null, err);
+          assert.equal(null, item);
+          db.close();
+        });
       });
     })
   },
@@ -57,12 +57,12 @@ module.exports = {
     MongoClient.connect(url, function(err, db) {
       // Set a participant as having paid 
       db.collection('goals').update({"name": goalName, "participants.email": participantEmail}, {$set: {"participants.$.paid": true}}, function(err, results) {
-          // Fetch the document that was modified
-          db.collection('goals').findOne({"name": goalName, "participants.email": participantEmail, "participants.paid": true}, function(err, item) {
-            assert.equal(null, err);
-            assert.notEqual(null, item);
-            db.close();
-          });
+        // Fetch the document that was modified
+        db.collection('goals').findOne({"name": goalName, "participants.email": participantEmail, "participants.paid": true}, function(err, item) {
+          assert.equal(null, err);
+          assert.notEqual(null, item);
+          db.close();
+        });
       });
     })
   },
@@ -72,23 +72,23 @@ module.exports = {
     MongoClient.connect(url, function(err, db) {
       // Change the value of the goal amount
       db.collection('goals').update({"name": goalName}, { $set: {"goalAmount": goalAmount}}, function(err, results) {
-          // Fetch the document that was modified
-          db.collection('goals').findOne({"name": goalName}, function(err, item) {
-            assert.equal(null, err);
-            assert.equal(goalAmount, item.goalAmount);
-            db.close();
-          });
+        // Fetch the document that was modified
+        db.collection('goals').findOne({"name": goalName}, function(err, item) {
+          assert.equal(null, err);
+          assert.equal(goalAmount, item.goalAmount);
+          db.close();
         });
+      });
     })
   },
 
   findGoals: function(callback) {
     MongoClient.connect(url, function(err, db) {
       db.collection('goals').find().toArray(function (err, docs){
-          if (docs != null) {
-            db.close();
-            callback(docs);
-          }
+        if (docs != null) {
+          db.close();
+          callback(docs);
+        }
       });
     });
   }
