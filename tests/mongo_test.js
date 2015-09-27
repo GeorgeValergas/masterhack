@@ -32,7 +32,4 @@ var participant = {
 	"paid": false
 }
 
-//mongoManager.insertGoal(goal);
-//mongoManager.changeGoalAmount(goalName, 20000);
-//mongoManager.addParticipantToGoal(goalName, participant);
-mongoManager.removeParticipantFromGoal(goalName, participantEmail);
+mongoManager.markParticipantAsHavingPaid(goalName, participantEmail);

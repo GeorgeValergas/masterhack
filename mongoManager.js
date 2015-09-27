@@ -49,6 +49,21 @@ module.exports = {
     })
   },
 
+  markParticipantAsHavingPaid: function(goalName, participantEmail) {
+     // Use connect method to connect to the Serverpaid
+    MongoClient.connect(url, function(err, db) {
+      // Set a participant as having paid 
+      db.collection('goals').update({"name": goalName, "participants.email": participantEmail}, {$set: {"participants.$.paid": true}}, function(err, results) {
+          // Fetch the document that was modified
+          db.collection('goals').findOne({"name": goalName, "participants.email": participantEmail, "participants.paid": true}, function(err, item) {
+            assert.equal(null, err);
+            assert.notEqual(null, item);
+            db.close();
+          });
+      });
+    })
+  },
+
   changeGoalAmount: function(goalName, goalAmount) {
     // Use connect method to connect to the Server
     MongoClient.connect(url, function(err, db) {
